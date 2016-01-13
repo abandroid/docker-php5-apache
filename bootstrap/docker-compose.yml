@@ -7,6 +7,8 @@ php:
         - ./docker/php.ini:/usr/local/etc/php/conf.d/php.ini
     links:
         - mysql
+        - redis
+        - elasticsearch
     ports:
         - 80:80
 mysql:
