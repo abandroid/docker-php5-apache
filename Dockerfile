@@ -19,7 +19,7 @@ RUN curl http://get.sensiolabs.org/php-cs-fixer.phar -o php-cs-fixer
 RUN chmod a+x php-cs-fixer
 RUN mv php-cs-fixer /usr/local/bin/php-cs-fixer
 
-RUN curl https://phar.phpunit.de/phpunit.phar -o phpunit
+RUN curl https://phar.phpunit.de/phpunit-4.8.21.phar -o phpunit
 RUN chmod +x phpunit
 RUN mv phpunit /usr/local/bin/phpunit
 
