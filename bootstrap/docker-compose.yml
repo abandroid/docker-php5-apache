@@ -19,7 +19,6 @@ mysql:
         MYSQL_USER: root
         MYSQL_PASSWORD: root
     volumes:
-        - .:/var/www/html
         - ./docker/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
     ports:
         - 3306:3306
