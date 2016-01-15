@@ -1,10 +1,10 @@
 php:
-    image: endroid/docker-php54-apache
+    build: ../ # endroid/docker-php54-apache
     volumes:
         - .:/var/www/html
         - ~/.ssh:/var/www/.ssh
         - ~/.gitconfig:/var/www/.gitconfig
-        - ./docker/php.ini:/usr/local/etc/php/conf.d/php.ini
+        - ./docker/php.ini:/usr/local/etc/php/conf.d/application.ini
     links:
         - mysql
         - redis
@@ -19,7 +19,7 @@ mysql:
         MYSQL_USER: root
         MYSQL_PASSWORD: root
     volumes:
-        - ./docker/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+        - ./docker/mysql.cnf:/etc/mysql/conf.d/application.cnf
     ports:
         - 3306:3306
 redis:
