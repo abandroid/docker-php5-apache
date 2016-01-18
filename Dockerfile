@@ -23,6 +23,10 @@ RUN curl https://phar.phpunit.de/phpunit-4.8.21.phar -o phpunit
 RUN chmod +x phpunit
 RUN mv phpunit /usr/local/bin/phpunit
 
+RUN curl http://get.sensiolabs.org/security-checker.phar -o security-checker
+RUN chmod +x security-checker
+RUN mv security-checker /usr/local/bin/security-checker
+
 ADD bootstrap/docker/php.ini /usr/local/etc/php/conf.d/application.ini
 
 RUN usermod -u 1000 www-data
