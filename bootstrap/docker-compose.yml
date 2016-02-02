@@ -9,6 +9,9 @@ php:
         - mysql
         - redis
         - elasticsearch
+    dns:
+        - 8.8.8.8
+        - 8.8.4.4
     ports:
         - 80:80
 mysql:
