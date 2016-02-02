@@ -19,12 +19,12 @@ RUN curl http://get.sensiolabs.org/php-cs-fixer.phar -o php-cs-fixer
 RUN chmod a+x php-cs-fixer
 RUN mv php-cs-fixer /usr/local/bin/php-cs-fixer
 
-RUN curl https://phar.phpunit.de/phpunit-4.8.21.phar -o phpunit
-RUN chmod +x phpunit
+RUN curl -L https://phar.phpunit.de/phpunit.phar -o phpunit
+RUN chmod a+x phpunit
 RUN mv phpunit /usr/local/bin/phpunit
 
 RUN curl http://get.sensiolabs.org/security-checker.phar -o security-checker
-RUN chmod +x security-checker
+RUN chmod a+x security-checker
 RUN mv security-checker /usr/local/bin/security-checker
 
 ADD bootstrap/docker/php.ini /usr/local/etc/php/conf.d/application.ini
