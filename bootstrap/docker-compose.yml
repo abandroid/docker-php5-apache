@@ -1,5 +1,5 @@
 php:
-    build: ../ # endroid/docker-php54-apache
+    image: endroid/docker-php54-apache
     volumes:
         - .:/var/www/html
         - ~/.ssh:/var/www/.ssh
