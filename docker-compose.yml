@@ -1,0 +1,39 @@
+workspace:
+    build: workspace/
+    volumes:
+        - ..:/var/www/html/
+elasticsearch:
+    build: elasticsearch/
+    ports:
+        - 9200:9200
+mongodb:
+    image: mongo
+    ports:
+        - 27017:27017
+mysql:
+    build: mysql/
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: application
+        MYSQL_USER: root
+        MYSQL_PASSWORD: root
+    ports:
+        - 3306:3306
+redis:
+    image: redis
+    ports:
+        - 6379:6379
+php:
+    build: php/
+    volumes:
+        - ~/.gitconfig:/var/www/.gitconfig
+        - ~/.ssh:/var/www/.ssh
+    volumes_from:
+        - workspace
+    links:
+        - elasticsearch
+        - mongodb
+        - mysql
+        - redis
+    ports:
+        - 80:80
