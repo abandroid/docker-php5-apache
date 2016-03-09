@@ -1,9 +1,9 @@
 workspace:
-    build: workspace/
+    build: docker/workspace/
     volumes:
         - ..:/var/www/html/
 elasticsearch:
-    build: elasticsearch/
+    build: docker/elasticsearch/
     ports:
         - 9200:9200
 mongodb:
@@ -11,7 +11,7 @@ mongodb:
     ports:
         - 27017:27017
 mysql:
-    build: mysql/
+    build: docker/mysql/
     environment:
         MYSQL_ROOT_PASSWORD: root
         MYSQL_DATABASE: application
@@ -24,7 +24,7 @@ redis:
     ports:
         - 6379:6379
 php:
-    build: php/
+    build: docker/php/
     volumes:
         - ~/.gitconfig:/var/www/.gitconfig
         - ~/.ssh:/var/www/.ssh
