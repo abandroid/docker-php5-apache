@@ -1,7 +1,7 @@
 workspace:
     build: docker/workspace/
     volumes:
-        - ..:/var/www/html/
+        - .:/var/www/html/
 elasticsearch:
     build: docker/elasticsearch/
     ports:
