@@ -7,7 +7,7 @@ elasticsearch:
     ports:
         - 9200:9200
 mongodb:
-    image: mongo
+    image: mongo:3
     ports:
         - 27017:27017
 mysql:
@@ -20,11 +20,27 @@ mysql:
     ports:
         - 3306:3306
 redis:
-    image: redis
+    image: redis:3
     ports:
         - 6379:6379
+selenium_hub:
+    image: selenium/hub
+    ports:
+        - 4444
+selenium_node_firefox:
+    build: docker/selenium-firefox
+    links:
+        - selenium_hub
+    environment:
+        - HUB_PORT_4444_TCP_ADDR=selenium_hub
+    expose:
+        - 5555
 php:
     build: docker/php/
+    environment:
+        - BLACKFIRE_SERVER_ID=X
+        - BLACKFIRE_SERVER_TOKEN=X
+        - GITHUB_OAUTH_TOKEN=X
     volumes:
         - ~/.gitconfig:/var/www/.gitconfig
         - ~/.ssh:/var/www/.ssh
@@ -35,5 +51,9 @@ php:
         - mongodb
         - mysql
         - redis
+        - selenium_hub
     ports:
         - 80:80
+    dns:
+        - 8.8.8.8
+        - 8.8.4.4

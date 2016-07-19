@@ -2,4 +2,4 @@
 
 sh stop.sh
 docker-compose up -d
-docker exec -t -i -u 1000 docker_php_1 /bin/bash
+docker exec -t -i -u 1000 dockerphp54apache_php_1 /bin/bash

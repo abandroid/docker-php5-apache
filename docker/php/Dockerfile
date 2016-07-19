@@ -1,7 +1,10 @@
 FROM php:5.4-apache
 
 RUN apt-get update
-RUN apt-get install -y vim nano git zlib1g-dev libicu-dev g++ libxml2-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev libssl-dev
+RUN apt-get install -y wget vim nano git zlib1g-dev libicu-dev g++ libxml2-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev libssl-dev
+
+RUN pecl install mongo
+RUN docker-php-ext-enable mongo
 
 RUN git config --global push.default matching
 
@@ -28,6 +31,14 @@ RUN chmod a+x security-checker
 RUN mv security-checker /usr/local/bin/security-checker
 
 ADD application.ini /usr/local/etc/php/conf.d/application.ini
+
+RUN git config --global push.default matching
+
+RUN wget -O - https://packagecloud.io/gpg.key | apt-key add -
+RUN echo "deb http://packages.blackfire.io/debian any main" | tee /etc/apt/sources.list.d/blackfire.list
+RUN apt-get update
+RUN apt-get install -y blackfire-agent blackfire-php
+ENTRYPOINT sh /var/www/html/docker/php/entrypoint.sh
 
 RUN usermod -u 1000 www-data
 RUN chown -R 1000 /var/www/
