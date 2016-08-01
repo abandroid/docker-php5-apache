@@ -1,4 +1,4 @@
-FROM php:5.4-apache
+FROM php:5-apache
 
 RUN apt-get update
 RUN apt-get install -y wget vim nano git zlib1g-dev libicu-dev g++ libxml2-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev libssl-dev
