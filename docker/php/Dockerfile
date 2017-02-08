@@ -1,4 +1,4 @@
-FROM php:5.4-apache
+FROM php:5-apache
 
 RUN apt-get update
 RUN apt-get install -y wget vim nano git zlib1g-dev libicu-dev g++ libxml2-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev libssl-dev
@@ -39,6 +39,12 @@ RUN echo "deb http://packages.blackfire.io/debian any main" | tee /etc/apt/sourc
 RUN apt-get update
 RUN apt-get install -y blackfire-agent blackfire-php
 ENTRYPOINT sh /var/www/html/docker/php/entrypoint.sh
+
+RUN apt-get update && apt-get install -y git bash-completion
+RUN curl -LsS https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o /etc/bash_completion.d/git
+RUN curl -LsS https://raw.githubusercontent.com/bobthecow/git-flow-completion/master/git-flow-completion.bash -o /etc/bash_completion.d/git-flow
+RUN echo 'source /etc/bash_completion.d/git' >> /var/www/.bashrc
+RUN echo 'source /etc/bash_completion.d/git-flow' >> /var/www/.bashrc
 
 RUN usermod -u 1000 www-data
 RUN chown -R 1000 /var/www/
