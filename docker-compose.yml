@@ -43,6 +43,7 @@ php:
         - GITHUB_OAUTH_TOKEN=X
     volumes:
         - ~/.gitconfig:/var/www/.gitconfig
+        - ~/.gitignore_global:/var/www/.gitignore_global
         - ~/.ssh:/var/www/.ssh
     volumes_from:
         - workspace
