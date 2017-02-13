@@ -24,7 +24,7 @@ redis:
     ports:
         - 6379:6379
 selenium_hub:
-    image: selenium/hub
+    image: selenium/hub:3.0.1
     ports:
         - 4444
 selenium_node_firefox:

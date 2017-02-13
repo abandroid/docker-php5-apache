@@ -1,7 +1,6 @@
 FROM php:5-apache
 
-RUN apt-get update
-RUN apt-get install -y wget vim nano git zlib1g-dev libicu-dev g++ libxml2-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev libssl-dev
+RUN apt-get update && apt-get install -y wget vim nano git zlib1g-dev libicu-dev g++ libxml2-dev libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev libssl-dev --fix-missing
 
 RUN pecl install mongo
 RUN docker-php-ext-enable mongo
@@ -36,11 +35,10 @@ RUN git config --global push.default matching
 
 RUN wget -O - https://packagecloud.io/gpg.key | apt-key add -
 RUN echo "deb http://packages.blackfire.io/debian any main" | tee /etc/apt/sources.list.d/blackfire.list
-RUN apt-get update
-RUN apt-get install -y blackfire-agent blackfire-php
+RUN apt-get update && apt-get install -y blackfire-agent blackfire-php --fix-missing
 ENTRYPOINT sh /var/www/html/docker/php/entrypoint.sh
 
-RUN apt-get update && apt-get install -y git bash-completion
+RUN apt-get update && apt-get install -y git bash-completion --fix-missing
 RUN curl -LsS https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o /etc/bash_completion.d/git
 RUN curl -LsS https://raw.githubusercontent.com/bobthecow/git-flow-completion/master/git-flow-completion.bash -o /etc/bash_completion.d/git-flow
 RUN echo 'source /etc/bash_completion.d/git' >> /var/www/.bashrc
